@@ -5,39 +5,46 @@ import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
-import pandas as import pdb; pdb.set_trace()
+import pandas as pd
+from config import password
 
-#SET UP THE DATABASE
+# SET UP THE DATABASE
 
-#create engine
-engine = create_engine('')
+# variables to populate the database connection string
+db_user = 'postgres'
+db_password = password
+db_host = 'localhost'
+db_port = 5432
+# This database must already exist
+db_name = 'covid_ETL'
 
-#reflect exisiting database into a new model
+engine = create_engine(f'postgres://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}')
+
+# reflect exisiting database into a new model
 Base = automap_base()
 
-#reflect tables
+# reflect tables
 Base.prepare(engine, reflect=True)
+covid = Base.classes.covid_table
 
-#Flask SET UP 
+
+# Flask SET UP
 
 app = Flask(__name__)
 
-#Flask Routes
+# Flask Routes
 @app.route('/')
 def home():
-    return(
 
-    )
 
-@app.route('/api/v1.0/<country_name>')
-def country_name():
     session = Session(engine)
 
-    #whatever we need to put in here:
+    results = session.query(covid.state, covid.code, covid.death, covid.total_cases).all()
 
     session.close()
 
-@app.route('/api/v1.0/weather'
+    return jsonify(results)
 
-if __name__ = '__main__':
+
+if __name__ =='__main__':
     app.run(debug=True)
