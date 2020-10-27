@@ -39,7 +39,7 @@ def home():
 
     session = Session(engine)
 
-    results = session.query(covid.state, covid.code, covid.death, covid.total_cases).all()
+    results = session.query(covid.state, covid.date, covid.code, covid.death, covid.total_cases).all()
 
     session.close()
 
