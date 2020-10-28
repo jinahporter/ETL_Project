@@ -25,8 +25,7 @@ The transformation that was performed to remove the extraneous information - as 
 Ultimately, with the amount of data queried and the structure that we had with numerical values, there was no need to use a NoSQL database and could handle complex queries much in a faster, transactional manner. The data set created would be able to create functions to aggregate numbers if need be, and also could potentially be updated regularly with the structure set in place.
 
 ### Table Schema
-INSERT IMAGE HERE
-
+(covid data ERD.png)
 With the way the data set was designed, we created one table within the database that would be able to hold all of the information, with the State Code as the Primary ID per each State. 
 
 ### Hypothetical use case(s) for database
