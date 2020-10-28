@@ -25,7 +25,7 @@ Base = automap_base()
 
 # reflect tables
 Base.prepare(engine, reflect=True)
-covid = Base.classes.covid_table
+covid_result = Base.classes.covid_table
 
 
 # Flask SET UP
@@ -39,7 +39,7 @@ def home():
 
     session = Session(engine)
 
-    results = session.query(covid.state, covid.date, covid.code, covid.death, covid.total_cases).all()
+    results = session.query(covid_result.state, covid_result.date, covid_result.code, covid_result.death, covid_result.total_cases).all()
 
     session.close()
 
