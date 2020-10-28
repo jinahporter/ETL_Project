@@ -26,6 +26,7 @@ Ultimately, with the amount of data queried and the structure that we had with n
 
 ### Table Schema
 ![table](https://github.com/jinahporter/ETL_Project/blob/main/covid%20data%20ERD.png)
+
 With the way the data set was designed, we created one table within the database that would be able to hold all of the information, with the State Code as the Primary ID per each State. 
 
 ### Hypothetical use case(s) for database
