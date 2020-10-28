@@ -27,6 +27,7 @@ Base = automap_base()
 Base.prepare(engine, reflect=True)
 covid_result = Base.classes.covid_table
 
+# making a change to reset cache
 
 # Flask SET UP
 
@@ -39,11 +40,14 @@ def home():
 
     session = Session(engine)
 
-    results = session.query(covid_result.state, covid_result.date, covid_result.code, covid_result.death, covid_result.total_cases).all()
+    # results = session.query(covid_result.state, covid_result.date, covid_result.code, covid_result.death, covid_result.total_cases).all()
 
+
+    results_better = pd.read_sql(session.query(covid_result.state, covid_result.date, covid_result.code, covid_result.death, covid_result.total_cases).statement, con=engine).to_dict(orient='records')
     session.close()
 
-    return jsonify(results)
+    return jsonify(results_better)
+    # return jsonify(results)
 
 
 if __name__ =='__main__':
